@@ -3,8 +3,6 @@ console.log('hello world');
 
 // ---------- SETTING UP ----------
 
-
-
 // ---------- CALCULATE ------------
 // 1 - Read first and second number
 // Add event listener 'input" to input tags. The input event fires when the value of an <input>, <select>, or <textarea> element has been changed. Call the function updateValue to read the new one. When reading the number (use both .target and .value). The target property returns the element where the event occured. 
@@ -19,34 +17,35 @@ function updateValue(x) {
     console.log(x.target.value);
     }
 
-// the variables are LOCAL (inside the function) and not global. Then is just copy paste of new values.
-// function addNumbers(){
-//     const firstNumber = document.querySelector('input#firstnumber').value;
-//     const secondNumber = document.querySelector('input#secondnumber').value;
-//     document.querySelector("input#firstnumber").value =  Number(firstNumber) + Number(secondNumber);
-//     document.querySelector('input#secondnumber').value = "";
-//     // querySelector('').value not getElementById
-// }
-
-function addNumbers(){
+function makeOperation(){
         const firstNumber = document.querySelector('input#firstnumber').value;
         const secondNumber = document.querySelector('input#secondnumber').value;
-        document.querySelector("input#firstnumber").value =  Number(firstNumber) + Number(secondNumber);
+        // read operator from a drop down
+        const chosenOperator = document.getElementById("operator");
+        const value = chosenOperator.value;
+        const newListNumber = document.createElement("li");
+        console.log(value);
+        // regarding the append: there is probably a better way to do that. it's too long and redundant
+        if (value === "add"){
+            document.querySelector("input#firstnumber").value =  Number(firstNumber) + Number(secondNumber);
+            document.querySelector("ul#results").appendChild(newListNumber).textContent =   Number(firstNumber) + Number(secondNumber);
+        }
+        else if (value === "sub"){
+            document.querySelector("input#firstnumber").value =  Number(firstNumber) - Number(secondNumber);
+            document.querySelector("ul#results").appendChild(newListNumber).textContent =  Number(firstNumber) - Number(secondNumber);
+        }
+        else if (value === "mul"){
+            document.querySelector("input#firstnumber").value =  Number(firstNumber) * Number(secondNumber);
+            document.querySelector("ul#results").appendChild(newListNumber).textContent =  Number(firstNumber) * Number(secondNumber);
+        } else { document.querySelector("input#firstnumber").value =  Number(firstNumber) / Number(secondNumber);
+        document.querySelector("ul#results").appendChild(newListNumber).textContent =  Number(firstNumber) / Number(secondNumber);}
         document.querySelector('input#secondnumber').value = "";
         // querySelector('').value not getElementById
+
+
     }
 
 getInputValue();
-
-// read operator from a drop down
-const chosenOperator = document.getElementById("operator");
-const value = chosenOperator.value;
-console.log(value);
-
-
-
-
-
 
 
 
@@ -54,9 +53,6 @@ console.log(value);
 // if yes, round up
 
 // write results into first number field
-// append result to end of list
 // scroll list to the bottom
-
-
 
 // clear list of results
